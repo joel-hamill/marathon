@@ -13,8 +13,7 @@ class DeploymentRepository(
 
   import scala.concurrent.ExecutionContext.Implicits.global
 
-  def store(plan: DeploymentPlan): Future[DeploymentPlan] =
-    storeWithVersion(plan.id, plan.version, plan)
+  def store(plan: DeploymentPlan): Future[DeploymentPlan] = storeByName(plan.id, plan)
 
   def all(): Future[Seq[DeploymentPlan]] = {
     allIds().flatMap { ids =>
